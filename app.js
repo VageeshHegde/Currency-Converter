@@ -6,6 +6,10 @@ const BASE_URL = "https://api.frankfurter.app/latest?from=USD&to=INR";
         const toCurr = document.querySelector(".to select");
         const msg = document.querySelector(".msg");
 
+        window.addEventListener("load", () =>{
+            updateExchangeRate();
+        })
+
     
        for(let select of dropdowns){
         for(currCode in countryList){
@@ -34,8 +38,12 @@ const BASE_URL = "https://api.frankfurter.app/latest?from=USD&to=INR";
         img.src = newSrc;
        };
 
-       btn.addEventListener("click", async (evt) =>{
+       btn.addEventListener("click", (evt) =>{
         evt.preventDefault();
+        updateExchangeRate();
+       });
+
+       const updateExchangeRate = async() => {
         let amount = document.querySelector('.amount input');
         let amtVal = amount.value;
         if (amtVal === "" || amtVal < 1){
@@ -52,5 +60,4 @@ const BASE_URL = "https://api.frankfurter.app/latest?from=USD&to=INR";
 
         let finalAmount = amtVal * rate;
         msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
-
-       });
+       }
