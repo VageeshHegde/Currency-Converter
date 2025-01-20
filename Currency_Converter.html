@@ -3,77 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency converter</title>
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        *{
+        /* Reset and basic styles */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        body{
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f4e4ba;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
         }
-        .container{
-            background-color: #fff;
+
+        .container {
+            background: #ffffff;
             padding: 2rem;
             border-radius: 1rem;
-            min-height: 45vh;
-            width: 45vh;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        form{
-            margin: 1rem 0 1rem 0;
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: bold;
         }
-        form select, button, input{
+
+        form {
+            margin-top: 1rem;
+        }
+
+        form input,
+        form button {
             width: 100%;
-            border: none;
-            outline: none;
-            border-radius: 0.75rem;
-        }
-        form input{
-            border: 1px solid lightgrey;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
             font-size: 1rem;
-            height: 3rem;
-            padding-left: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+            outline: none;
         }
-        .dropdown{
+
+        form select {
+            width: 100%;
+            /* margin-bottom: 1rem; */
+            /* padding: 0.75rem; */
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+
+        form input {
+            padding-left: 0.75rem;
+        }
+
+        form input:focus {
+            border-color: #af4d98;
+            box-shadow: 0 0 5px rgba(175, 77, 152, 0.5);
+        }
+
+        form button {
+            background-color: #af4d98;
+            color: #fff;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #8f3d7b;
+        }
+
+        .dropdown {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2rem;
-        }
-        .dropdown i{
-            font-size: 1.5rem;
-            margin-top: 1rem;
-        }
-        .select-container img{
-            max-width: 2rem;
-        }
-        .select-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 6rem;
-            border-radius: 0.5rem;
-            border: 1px solid lightgrey;
-        }
-        .select-container select{
-            width: auto;
-            font-size: 1rem;
-        }
-        .msg{
             margin: 1rem 0;
         }
-        form button{
-            height: 3rem;
-            background-color: #af4d98;
-            color: #fff;
-            font-size: 1.15rem;
-            cursor: pointer;
+
+        .dropdown i {
+            font-size: 1.5rem;
+            color: #af4d98;
+            margin: 0 1rem;
+        }
+
+        .select-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 0.2rem;
+        }
+
+        .select-container img {
+            max-width: 32px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .select-container select {
+            border: none;
+            font-size: 1rem;
+            flex: 1;
+            outline: none;
+        }
+
+        .msg {
+            background: #f4f4f4;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .dropdown i {
+                font-size: 1.2rem;
+            }
+
+            form input,
+            form select,
+            form button {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -83,29 +154,33 @@
         <form>
             <div class="amount">
                 <p>Enter Amount</p>
-                <input value ="1" type="text" />
+                <input value="1" type="text" placeholder="Enter amount" />
             </div>
             <div class="dropdown">
-            <div class="from">
-                <p>From</p>
-                <div class="select-container">
-                    <img src="https://flagsapi.com/US/flat/64.png">
-                    <select name="from">                               
-                    </select>
+                <div class="from">
+                    <p>From</p>
+                    <div class="select-container">
+                        <img src="https://flagsapi.com/US/flat/64.png" alt="US Flag">
+                        <select name="from">
+                            <option value="USD">USD</option>
+                            <!-- Additional options -->
+                        </select>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <div class="to">
+                    <p>To</p>
+                    <div class="select-container">
+                        <img src="https://flagsapi.com/IN/flat/64.png" alt="India Flag">
+                        <select name="to">
+                            <option value="INR">INR</option>
+                            <!-- Additional options -->
+                        </select>
+                    </div>
                 </div>
             </div>
-            <i class="fa-solid fa-arrow-right-arrow-left"></i>
-            <div class="to">
-                <p>To</p>
-                <div class="select-container">
-                    <img src="https://flagsapi.com/IN/flat/64.png">
-                    <select name="to">                              
-                    </select>
-                </div>
-            </div>
-            </div>
-            <div class="msg">1USD = 84 INR</div>
-            <button>Get Exchange Rate</button>
+            <div class="msg">1 USD = 84 INR</div>
+            <button type="button">Get Exchange Rate</button>
         </form>
     </div>
     <script src="codes.js"></script>
